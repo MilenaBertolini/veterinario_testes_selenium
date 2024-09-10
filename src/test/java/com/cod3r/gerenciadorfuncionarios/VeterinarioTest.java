@@ -72,78 +72,6 @@ public class VeterinarioTest {
         driver.quit();
     }
 
-    // Diego
-    @Test
-    public void testarListarVeterinario() {
-
-        // verificar se a página correta foi aberta
-        driver.get("http://localhost:8080/home");
-        assertEquals("Gerenciador de Veterinários", driver.getTitle());
-        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
-
-        assertEquals("Veterinarios", title.getText());
-
-        // pegar elementos veterinario 1
-        WebElement vet1Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[1]/span"));
-        WebElement vet1Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[2]/span"));
-        WebElement vet1Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[3]/span"));
-        WebElement vet1Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[4]/span"));
-
-        // pegar elementos veterinario 2
-        WebElement vet2Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[1]/span"));
-        WebElement vet2Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[2]/span"));
-        WebElement vet2Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[3]/span"));
-        WebElement vet2Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[4]/span"));
-
-        // pegar elementos veterinario 3
-        WebElement vet3Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[1]/span"));
-        WebElement vet3Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[2]/span"));
-        WebElement vet3Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[3]/span"));
-        WebElement vet3Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[4]/span"));
-
-        // verificar se realmente os elementos retornados estão na listagem inicial
-        // veterinário 1
-        assertEquals("Conceicao Evaristo", vet1Nome.getText());
-        assertEquals("pequenos", vet1Especialidade.getText());
-        assertEquals("conceicao@gmail.com", vet1Email.getText());
-        assertEquals("3500.00", vet1Salario.getText());
-
-        // veterinário 2
-        assertEquals("Erica Queiroz Pinto", vet2Nome.getText());
-        assertEquals("grandes", vet2Especialidade.getText());
-        assertEquals("erica@gmail.com", vet2Email.getText());
-        assertEquals("4500.00", vet2Salario.getText());
-
-        // veterinario 3
-        assertEquals("Daiane Ferreira de Oliveira", vet3Nome.getText());
-        assertEquals("Animais exóticos", vet3Especialidade.getText());
-        assertEquals("daianeferreira@mail.com", vet3Email.getText());
-        assertEquals("5740.60", vet3Salario.getText());
-
-        driver.quit();
-    }
-
-    @Test
-    public void testarDeletarVeterinario() {
-
-        // verificar se a página correta foi aberta
-        driver.get("http://localhost:8080/home");
-        assertEquals("Gerenciador de Veterinários", driver.getTitle());
-        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
-
-        assertEquals("Veterinarios", title.getText());
-
-        // deletando o 3º veterinário Daiane Ferreira de Oliveira
-        WebElement btnDeletar = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[5]/a[2]"));
-        btnDeletar.click();
-
-        // pegando o xpath que antes ficava com o cliente
-        List<WebElement> clienteRemovido = driver.findElements(By.xpath("/html/body/div[2]/table/tbody/tr[4]"));
-        assertTrue(clienteRemovido.isEmpty());
-
-        driver.quit();
-    }
-
     // Barbara
     @Test
     public void testarPesquisarVeterinario() {
@@ -233,5 +161,79 @@ public class VeterinarioTest {
 
         driver.quit();
     }
+
+    // Diego
+    @Test
+    public void testarListarVeterinario() {
+
+        // verificar se a página correta foi aberta
+        driver.get("http://localhost:8080/home");
+        assertEquals("Gerenciador de Veterinários", driver.getTitle());
+        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+
+        assertEquals("Veterinarios", title.getText());
+
+        // pegar elementos veterinario 1
+        WebElement vet1Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[1]/span"));
+        WebElement vet1Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[2]/span"));
+        WebElement vet1Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[3]/span"));
+        WebElement vet1Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[4]/span"));
+
+        // pegar elementos veterinario 2
+        WebElement vet2Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[1]/span"));
+        WebElement vet2Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[2]/span"));
+        WebElement vet2Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[3]/span"));
+        WebElement vet2Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[4]/span"));
+
+        // pegar elementos veterinario 3
+        WebElement vet3Nome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[1]/span"));
+        WebElement vet3Especialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[2]/span"));
+        WebElement vet3Email = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[3]/span"));
+        WebElement vet3Salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[4]/span"));
+
+        // verificar se realmente os elementos retornados estão na listagem inicial
+        // veterinário 1
+        assertEquals("Conceicao Evaristo", vet1Nome.getText());
+        assertEquals("pequenos", vet1Especialidade.getText());
+        assertEquals("conceicao@gmail.com", vet1Email.getText());
+        assertEquals("3500.00", vet1Salario.getText());
+
+        // veterinário 2
+        assertEquals("Erica Queiroz Pinto", vet2Nome.getText());
+        assertEquals("grandes", vet2Especialidade.getText());
+        assertEquals("erica@gmail.com", vet2Email.getText());
+        assertEquals("4500.00", vet2Salario.getText());
+
+        // veterinario 3
+        assertEquals("Daiane Ferreira de Oliveira", vet3Nome.getText());
+        assertEquals("Animais exóticos", vet3Especialidade.getText());
+        assertEquals("daianeferreira@mail.com", vet3Email.getText());
+        assertEquals("5740.60", vet3Salario.getText());
+
+        driver.quit();
+    }
+
+    @Test
+    public void testarDeletarVeterinario() {
+
+        // verificar se a página correta foi aberta
+        driver.get("http://localhost:8080/home");
+        assertEquals("Gerenciador de Veterinários", driver.getTitle());
+        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+
+        assertEquals("Veterinarios", title.getText());
+
+        // deletando o 3º veterinário Daiane Ferreira de Oliveira
+        WebElement btnDeletar = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[5]/a[2]"));
+        btnDeletar.click();
+
+        // pegando o xpath que antes ficava com o cliente
+        List<WebElement> clienteRemovido = driver.findElements(By.xpath("/html/body/div[2]/table/tbody/tr[4]"));
+        assertTrue(clienteRemovido.isEmpty());
+
+        driver.quit();
+    }
+
+    
 
 }
