@@ -73,4 +73,89 @@ public class VeterinarioTest {
         driver.quit();
     }
     
+    //Barbara
+    @Test
+    public void testarPesquisarVeterinario(){
+
+        // verificar se a página correta foi aberta
+        driver.get("http://localhost:8080/home");
+        assertEquals("Gerenciador de Veterinários", driver.getTitle());
+        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+        assertEquals("Veterinarios", title.getText());
+
+        // buscar pelo botão pesquisar
+        WebElement btnPesquisar = driver.findElement(By.xpath("/html/body/div[2]/a[2]/button"));
+        btnPesquisar.click();
+        
+        // verificar se está na página de pesquisar
+        WebElement titlePesquisar = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+        assertEquals("Pesquisar veterinários", titlePesquisar.getText());
+
+        // buscar pelo campo de pesquisa, adicionar nome e pesquisar
+        WebElement inputNome = driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div/input"));
+        inputNome.sendKeys("Erica Queiroz Pinto");
+        WebElement btnPesquisa = driver.findElement(By.xpath("/html/body/div[2]/form/div[2]/button"));
+        btnPesquisa.click();
+
+        // verificar se a consulta funcionou
+        WebElement nomeRetornado = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[1]/span"));
+        WebElement especialidadeRetornada = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[2]/span"));
+        WebElement emailRetornado = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[3]/span"));
+        WebElement salarioRetornado = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[4]"));
+
+        // verificar se a pesquisa retornada está correta
+        assertEquals("Erica Queiroz Pinto", nomeRetornado.getText());
+        assertEquals("grandes", especialidadeRetornada.getText());
+        assertEquals("erica@gmail.com", emailRetornado.getText());
+        assertEquals("R$4500.00", salarioRetornado.getText());
+
+        driver.quit();
+    }
+    
+    @Test
+    public void testarAtualizaVeterinario(){
+
+        // verificar se a página correta foi aberta
+        driver.get("http://localhost:8080/home");
+        assertEquals("Gerenciador de Veterinários", driver.getTitle());
+        WebElement title = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+                                                                
+        assertEquals("Veterinarios", title.getText());
+
+        // buscar pelo botão atualizar a veterinária Daiane Ferreira de Oliveira
+        WebElement btnAtualizar = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[5]/a[1]"));
+        btnAtualizar.click();
+        
+        // buscar por elementos da página cadastrar
+        WebElement formNome = driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div[1]/input"));
+        WebElement formEmail = driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div[2]/input"));
+        WebElement formEspecialidade = driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div[3]/input"));
+        WebElement formSalario = driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div[4]/input"));
+        
+        // verificar se o cliente aberto para a atualização foi o informado
+        assertEquals("Daiane Ferreira de Oliveira", formNome.getAttribute("value"));
+        assertEquals("daianeferreira@mail.com", formEmail.getAttribute("value"));
+        assertEquals("Animais exóticos", formEspecialidade.getAttribute("value"));
+        assertEquals("5000.00", formSalario.getAttribute("value"));
+        
+        // atualizar o salário do veterinário
+        formSalario.clear();
+        formSalario.sendKeys("5740,60");
+        WebElement btnAtualizaDados = driver.findElement(By.xpath("/html/body/div[2]/form/div[2]/button"));
+        btnAtualizaDados.click();
+
+        // buscar pelo veterinario atualizado
+        WebElement atualizadoVetNome = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[1]/span"));
+        WebElement atualizadoVetEspecialidade = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[2]/span"));
+        WebElement atualizadoVetEmail = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[3]/span"));
+        WebElement atualizadoVetSalario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[4]/span"));
+
+        // verificar se atualizou o veterinário e somente houve alteração no campo salário
+        assertEquals("Daiane Ferreira de Oliveira", atualizadoVetNome.getText());
+        assertEquals("Animais exóticos", atualizadoVetEspecialidade.getText());
+        assertEquals("daianeferreira@mail.com", atualizadoVetEmail.getText());
+        assertEquals("5740.60", atualizadoVetSalario.getText());
+
+        driver.quit();
+    }
 }
