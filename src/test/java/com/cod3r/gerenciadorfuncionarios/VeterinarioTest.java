@@ -6,7 +6,10 @@ import java.time.Duration;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class VeterinarioTest {
 
     private WebDriver driver;
@@ -29,6 +33,7 @@ public class VeterinarioTest {
 
     // Milena
     @Test
+    @Order(1)
     public void testarCadastarVeterinarioComSucesso() {
 
         // verificar se a página correta foi aberta
@@ -74,6 +79,7 @@ public class VeterinarioTest {
 
     // Barbara
     @Test
+    @Order(2)
     public void testarPesquisarVeterinario() {
 
         // verificar se a página correta foi aberta
@@ -113,6 +119,7 @@ public class VeterinarioTest {
     }
 
     @Test
+    @Order(3)
     public void testarAtualizaVeterinario() {
 
         // verificar se a página correta foi aberta
@@ -164,6 +171,7 @@ public class VeterinarioTest {
 
     // Diego
     @Test
+    @Order(4)
     public void testarListarVeterinario() {
 
         // verificar se a página correta foi aberta
@@ -214,6 +222,7 @@ public class VeterinarioTest {
     }
 
     @Test
+    @Order(5)
     public void testarDeletarVeterinario() {
 
         // verificar se a página correta foi aberta
